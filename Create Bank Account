@@ -1,0 +1,37 @@
+class Account:
+  def __init__(self, name,cash=0,):
+    self.name=name
+    self.balance=cash
+    print(f'{self.name}Account creation successful')
+    self.show()
+  def deposit(self, cash):
+    self.balance+=cash
+    print(f'{self.name}:Deposit ${cash} successful')
+    self.show()
+  def withdraw(self,num):
+    if num > self.balance:
+      print('Withdrawal failed')
+      return 
+    self.balance-=num
+    print(f'{self.name}:Successful withdrawal${num}')
+    self.show()
+  def transfer(self,target,num):
+    if num>self.balance:
+      print('Transfer failed')
+      return
+    self.balance-=num
+    target.balance+=num
+    print(f'{self.name}:Transfer successful${num}to{target.name}')
+  
+  
+  def show(self):
+    print(f'{self.name} :Your account balance is ${self.balance}')
+    print('*'*20)
+    
+eric=Account('Eric',2000)
+josh=Account('Josh',3000)
+#eric.show()
+eric.deposit(5000)
+eric.withdraw(10000)
+eric.transfer(josh,50000)
+eric.show()
